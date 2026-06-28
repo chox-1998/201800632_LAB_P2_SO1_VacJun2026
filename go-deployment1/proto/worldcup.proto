@@ -1,0 +1,29 @@
+syntax = "proto3";
+package worldcup2026;
+option go_package = "./proto";
+// Mensaje que se enviará
+message MatchPredictionRequest {
+Teams home_team = 1;
+Teams away_team = 2;
+int32 home_goals = 3;
+int32 away_goals = 4;
+string username = 5;
+string timestamp = 6;
+}
+// Equipos aceptados por el proyecto
+enum Teams {
+TEAMS_UNKNOWN = 0;
+GTM = 1;
+MEX = 2;
+BRA = 3;
+ARG = 4;
+ESP = 5;
+}
+// Respuesta del servidor
+message MatchPredictionResponse {
+string status = 1;
+}
+// Servicio gRPC
+service MatchPredictionService {
+rpc SendPrediction (MatchPredictionRequest) returns (MatchPredictionResponse);
+}
