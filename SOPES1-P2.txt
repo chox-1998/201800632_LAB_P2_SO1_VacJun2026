@@ -1,0 +1,10 @@
+# Conectarte a la VM
+gcloud compute ssh zot-registry --zone=us-central1-a
+
+# Build the docker images and push them
+sudo docker build -t rust_api:latest .
+sudo docker tag rust_api:latest 34.9.139.204/rust_api:latest
+sudo docker push 34.9.139.204/rust_api:latest
+
+#Checar las imagenes en la VM
+grep -i rootDirectory /etc/zot/config.json
